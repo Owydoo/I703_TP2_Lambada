@@ -17,8 +17,8 @@ public class Main {
 		@SuppressWarnings("deprecation")
 		parser p = new parser (yy);
 		
-		//System.out.println(p.parse( ).value);
-		System.out.println(p.parse( ));
+		System.out.println(p.parse( ).value);
+		//System.out.println(p.parse( ));
 		//p.parse( );
 	}
 

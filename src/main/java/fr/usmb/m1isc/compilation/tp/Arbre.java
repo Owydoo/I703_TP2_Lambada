@@ -60,18 +60,35 @@ public class Arbre {
 
 		StringBuilder res = new StringBuilder("");
 
-
-
-		if (fg != null || fd != null) {
-			res.append('(');
-			if (fg != null) res.append(fg);
-			else res.append("null");
-			res.append(", ");
-			if (fd != null) res.append(fd);
-			else res.append("null");
-			res.append(')');
+//		res.append('(');
+		if(this.getFg() != null) {
+			if(this.getFd() != null) {
+				res.append("(" + this.getValue() + " " + this.getFg().toString() + this.getFd().toString() + ")");
+			} else {
+				res.append("(" + this.getValue() + " " + this.getFg().toString() + ")");
+			}
 		}
-		res.append(this.type.toString() + this.fg.toString() + this.fd.toString());
+		else {
+			if(this.getFd() != null) {
+				res.append("(" + this.getValue() + " . " + this.getFd().toString() + ")");
+			}
+			else {
+				res.append(this.getValue() + " ");
+			}
+		}
+//		res.append(')');
+		
+	
+//		if (fg != null || fd != null) {
+//			res.append('(');
+//			if (fg != null) res.append(fg);
+//			else res.append("null");
+//			res.append(", ");
+//			if (fd != null) res.append(fd);
+//			else res.append("null");
+//			res.append(')');
+//		}
+//		res.append(this.type.toString() + this.fg.toString() + this.fd.toString());
 		return res.toString();
 	}
 	
