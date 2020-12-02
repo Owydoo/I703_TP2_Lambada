@@ -4,9 +4,7 @@ package fr.usmb.m1isc.compilation.tp;
 public class Arbre {
 	
 	public enum NodeType {
-		ENTIER,  PLUS, MOINS, MOINS_UNAIRE, MUL, DIV, MOD, NOT, OR, AND, PAR_G, 
-		PAR_D, SEMI, POINT, LET, INPUT, OUTPUT, IF, THEN, ELSE, WHILE, DO, EGAL, 
-		GT, GTE, NIL, ERROR, IDENT
+		ENTIER,  PLUS, MOINS, MOINS_UNAIRE, MUL, DIV, MOD, NOT, OR, AND, PAR_G, PAR_D, SEMI, POINT, LET, INPUT, OUTPUT, IF, THEN, ELSE, WHILE, DO, EGAL, GT, GTE, NIL, ERROR, IDENT
 	}
 	
 	private NodeType type;
@@ -58,34 +56,23 @@ public class Arbre {
 	
 
 	public String toString() {
-//		StringBuilder res = new StringBuilder("");
-//		switch (type) {
-//			case ENTIER :
-//				res.append(this.value.toString());
-//				break;
-//			case ET :
-//				res.append("&");
-//				break;
-//			case LIGNE :
-//				res.append("\\\\");
-//				break;
-//			case TABULAR :
-//				res.append("tabular");
-//				break;
-//			case COLS :
-//				res.append("cols:").append(value);
-//				break;
-//			default : res.append("????");
-//		}
-//		if (fg != null || fd != null) {
-//			res.append('(');
-//			if (fg != null) res.append(fg); else res.append("null");
-//			res.append(", ");
-//			if (fd != null) res.append(fd); else res.append("null");
-//			res.append(')');
-//		}
-		String res = this.type.toString() + this.fg.toString() + this.fd.toString();
-		return res;
+
+
+		StringBuilder res = new StringBuilder("");
+
+
+
+		if (fg != null || fd != null) {
+			res.append('(');
+			if (fg != null) res.append(fg);
+			else res.append("null");
+			res.append(", ");
+			if (fd != null) res.append(fd);
+			else res.append("null");
+			res.append(')');
+		}
+		res.append(this.type.toString() + this.fg.toString() + this.fd.toString());
+		return res.toString();
 	}
 	
 
