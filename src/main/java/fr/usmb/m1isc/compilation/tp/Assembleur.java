@@ -17,7 +17,7 @@ public class Assembleur {
         pw.println("CODE SEGMENT");
 
         //need the code
-        rightCodes(arbre,pw);
+        rightCode(arbre,pw);
 
         pw.println("CODE ENDS");
         pw.close();
@@ -51,80 +51,58 @@ public class Assembleur {
         }
     }
 
-    public static void rightCodes(Arbre arbre, PrintWriter pw){
-        if(arbre.getType() == Arbre.NodeType.SEMI) {
-            rightCodes(arbre.getFg(), pw);
-            if(!arbre.getFd().isALeaf()){
-                rightCodes(arbre.getFd(), pw);
-            }
-        }
-        else{ //la racine n'est pas un point virgule
-            System.out.println(arbre.getFg().toString() + " " + arbre.getType() + " " + arbre.getFd());
-
-            if(arbre.getFg().isALeaf() && arbre.getFd().isALeaf()){
-            	pw.print("deux feuilles   -   ");
-                rightLine(arbre.getFg(), arbre.getType(), arbre.getFd(), pw );
-            }
-            else if (arbre.getFg().isALeaf() && !arbre.getFd().isALeaf()) {
-            	pw.print("feuille a gauche   -   ");
-            	rightCodes(arbre.getFd(), pw);
-            }
-            else if (!arbre.getFg().isALeaf() && arbre.getFd().isALeaf()) {
-            	pw.print("feuille a droite   -   ");
-            	rightCodes(arbre.getFg(), pw);
-            }
-            else { //aucun des deux fils n'est une feuille
-            	pw.print("0 feuille");
-            	rightCodes(arbre.getFg(),pw);
-            	rightCodes(arbre.getFd(), pw);
-            }
-
-
-        }
-    }
-
     
 
 
-    public static void rightLine(Arbre arbreGauche, Arbre.NodeType nodeType, Arbre arbreDroit, PrintWriter pw){
-        switch(nodeType) {
-            case LET:
-                System.err.println("let");
-                pw.println("    mov eax, "+ arbreDroit);
-                pw.println("    mov "+ arbreGauche +", eax");
-                pw.println("    mov eax, " + arbreGauche );
-                pw.println("    push eax");
+    public static void rightCode(Arbre arbre, PrintWriter pw) {
+        if(arbre!= null){
+            switch (arbre.getType()) {
+                case ENTIER:
+                    pw.println("    mov eax, " + arbre.toString());
+                    break;
 
-                break;
+                case SEMI:
+                    rightCode(arbre.getFg(), pw);
+                    rightCode(arbre.getFd(), pw);
+                    break;
+                case LET:
+                    rightCode(arbre.getFd(), pw);
 
-            case PLUS:
-                System.err.println("+");
-                pw.println("    mov eax, "+ arbreGauche);
-                pw.println("    add eax, "+ arbreDroit);
-                break;
-
-            case MOINS:
-                System.err.println("-");
-                pw.println("    mov eax, "+ arbreGauche);
-                pw.println("    sub eax, "+ arbreDroit);
-                break;
-
-            case MUL:
-                System.err.println("*");
-                pw.println("    mov eax, "+ arbreGauche);
-                pw.println("    mul eax, "+arbreDroit);
-                break;
-
-            case DIV:
-                System.err.println("/");
-                pw.println("    mov eax, "+ arbreGauche);
-                pw.println("    div eax, "+arbreDroit);
-                break;
-		default:
-			break;
-
+                    pw.println("    mov " + arbre.getFg() + ", eax");
+                    break;
+                case PLUS:
+                    rightCode(arbre.getFg(), pw);
+                    pw.println("    push eax");
+                    rightCode(arbre.getFd(), pw);
+                    pw.println("    pop ebx");
+                    pw.println("    add eax, ebx");
+                    break;
+                case MOINS:
+                    rightCode(arbre.getFg(), pw);
+                    pw.println("    push eax");
+                    rightCode(arbre.getFd(), pw);
+                    pw.println("    pop ebx");
+                    pw.println("    sub ebx, eax");
+                    pw.println("    mov eax, ebx");
+                    break;
+                case MUL:
+                    rightCode(arbre.getFg(), pw);
+                    pw.println("    push eax");
+                    rightCode(arbre.getFd(), pw);
+                    pw.println("    pop ebx");
+                    pw.println("    mul eax, ebx");
+                    break;
+                case DIV:
+                    rightCode(arbre.getFg(), pw);
+                    pw.println("    push eax");
+                    rightCode(arbre.getFd(), pw);
+                    pw.println("    pop ebx");
+                    pw.println("    div ebx, eax");
+                    pw.println("    mov eax, ebx");
+                    break;
+            }
         }
-
     }
+
 
 }

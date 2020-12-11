@@ -4,10 +4,16 @@ DATA SEGMENT
    prixTtc  DD
 DATA ENDS
 CODE SEGMENT
-deux feuilles   -       mov eax, 200 
+    mov eax, 200 
     mov prixHt , eax
-    mov eax, prixHt 
     push eax
-feuille a gauche   -   feuille a droite   -   deux feuilles   -       mov eax, prixHt 
-    mul eax, 119 
+    mov eax, 119 
+    pop ebx
+    mul eax, ebx
+    push eax
+    mov eax, 100 
+    pop ebx
+    div ebx, eax
+    mov eax, ebx
+    mov prixTtc , eax
 CODE ENDS
