@@ -59,28 +59,14 @@ public class Assembleur {
             }
         }
         else{
+            System.out.println(arbre.getFg().toString() + " " + arbre.getType() + " " + arbre.getFd());
+
             if(arbre.getFg().isALeaf() && arbre.getFd().isALeaf()){
                 rightLine(arbre.getFg(), arbre.getType(), arbre.getFd(), pw );
             }
-            else{
-                rightCodes(arbre.getFg(), pw);
-
-            }
-            /*else{
-
-                if(arbre.getFg() != null){
-                    rightCodes(arbre.getFg(), pw);
-                }
-                if(arbre.getFd() != null){
-                    rightCodes(arbre.getFd(),pw);
-
-                }
-            }*/
+            if()
 
         }
-        //let prixHt = 200;
-        //let prixTtc =  prixHt * 119 / 100.
-
     }
 
 
@@ -90,6 +76,8 @@ public class Assembleur {
                 System.err.println("let");
                 pw.println("    mov eax,"+ arbreDroit);
                 pw.println("    mov "+ arbreGauche +", eax");
+                pw.println("    push eax");
+                pw.println("    pop eax");
                 break;
 
             case PLUS:

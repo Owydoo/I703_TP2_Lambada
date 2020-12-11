@@ -15,6 +15,6 @@ CODE SEGMENT
     mov eax, 100
     pop ebx
     div ebx, eax
+    mov eax,ebx
     mov prixTtc, eax
-
 CODE ENDS
