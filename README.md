@@ -4,8 +4,12 @@ Hugo HERSEMEULE
 Tom Kubasik
 
 TP2_INFO703
+TP3_4 INFO703
 
-Exercice 1 terminé au 02/12/2020
+TP2 : Exercice 1 terminé au 02/12/2020
+
+TP3_4 : Exercice 1 terminé au 11/12/2020
+
 ```
 
 
