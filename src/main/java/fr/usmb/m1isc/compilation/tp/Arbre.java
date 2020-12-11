@@ -1,6 +1,8 @@
 package fr.usmb.m1isc.compilation.tp;
 
 
+import java.io.PrintWriter;
+
 public class Arbre {
 	
 	public enum NodeType {
@@ -91,6 +93,10 @@ public class Arbre {
 //		res.append(this.type.toString() + this.fg.toString() + this.fd.toString());
 		return res.toString();
 	}
+
+
+
+
 	
 
 }

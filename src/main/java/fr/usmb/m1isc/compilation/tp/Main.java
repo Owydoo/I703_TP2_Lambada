@@ -17,7 +17,9 @@ public class Main {
 		@SuppressWarnings("deprecation")
 		parser p = new parser (yy);
 		
-		System.out.println(p.parse( ).value);
+		Arbre a = (Arbre) p.parse( ).value;
+		System.out.println(a.toString());
+		Assembleur.createAssemblyfile(a,"assembly.asm");
 		//System.out.println(p.parse( ));
 		//p.parse( );
 	}
