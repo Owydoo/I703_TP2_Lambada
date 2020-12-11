@@ -6,6 +6,7 @@ DATA ENDS
 CODE SEGMENT
     mov eax, 200 
     mov prixHt , eax
+    mov eax, prixHt 
     push eax
     mov eax, 119 
     pop ebx

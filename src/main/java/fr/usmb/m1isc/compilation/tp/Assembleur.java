@@ -51,13 +51,11 @@ public class Assembleur {
         }
     }
 
-    
-
-
     public static void rightCode(Arbre arbre, PrintWriter pw) {
         if(arbre!= null){
             switch (arbre.getType()) {
                 case ENTIER:
+                case IDENT:
                     pw.println("    mov eax, " + arbre.toString());
                     break;
 
