@@ -55,6 +55,10 @@ public class Arbre {
 	public void setFormat(char format) {
 		this.format = format;
 	}
+
+	public boolean isALeaf(){
+		return (this.fg == null && this.fd == null);
+	}
 	
 
 	public String toString() {

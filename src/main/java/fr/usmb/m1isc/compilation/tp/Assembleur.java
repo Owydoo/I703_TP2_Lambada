@@ -52,11 +52,72 @@ public class Assembleur {
     }
 
     public static void rightCodes(Arbre arbre, PrintWriter pw){
+        if(arbre.getType() == Arbre.NodeType.SEMI) {
+            rightCodes(arbre.getFg(), pw);
+            if(!arbre.getFd().isALeaf()){
+                rightCodes(arbre.getFd(), pw);
+            }
+        }
+        else{
+            if(arbre.getFg().isALeaf() && arbre.getFd().isALeaf()){
+                rightLine(arbre.getFg(), arbre.getType(), arbre.getFd(), pw );
+            }
+            else{
+                rightCodes(arbre.getFg(), pw);
+
+            }
+            /*else{
+
+                if(arbre.getFg() != null){
+                    rightCodes(arbre.getFg(), pw);
+                }
+                if(arbre.getFd() != null){
+                    rightCodes(arbre.getFd(),pw);
+
+                }
+            }*/
+
+        }
+        //let prixHt = 200;
+        //let prixTtc =  prixHt * 119 / 100.
 
     }
 
 
-    public static void rightLine(){
+    public static void rightLine(Arbre arbreGauche, Arbre.NodeType nodeType, Arbre arbreDroit, PrintWriter pw){
+        switch(nodeType) {
+            case LET:
+                System.err.println("let");
+                pw.println("    mov eax,"+ arbreDroit);
+                pw.println("    mov "+ arbreGauche +", eax");
+                break;
+
+            case PLUS:
+                System.err.println("+");
+                pw.println("    mov eax,"+ arbreGauche);
+                pw.println("    add eax,"+ arbreDroit);
+                break;
+
+            case MOINS:
+                System.err.println("-");
+                pw.println("    mov eax,"+ arbreGauche);
+                pw.println("    sub eax,"+ arbreDroit);
+                break;
+
+            case MUL:
+                System.err.println("*");
+                pw.println("    mov eax,"+ arbreGauche);
+                pw.println("    mul eax,"+arbreDroit);
+                break;
+
+            case DIV:
+                System.err.println("/");
+                pw.println("    mov eax,"+ arbreGauche);
+                pw.println("    div eax,"+arbreDroit);
+                break;
+
+        }
 
     }
+
 }
