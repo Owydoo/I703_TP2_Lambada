@@ -4,17 +4,10 @@ DATA SEGMENT
    prixTtc  DD
 DATA ENDS
 CODE SEGMENT
-    mov eax,200 
+deux feuilles   -       mov eax, 200 
     mov prixHt , eax
-    mov eax, prixHt
-    push eax    // eax est dans la pile
-    pop ebx // recup eax et on le met dans ebx
-    mov eax, 119
-    mul eax, ebx
+    mov eax, prixHt 
     push eax
-    mov eax, 100
-    pop ebx
-    div ebx, eax
-    mov prixTtc, eax
-
+feuille a gauche   -   feuille a droite   -   deux feuilles   -       mov eax, prixHt 
+    mul eax, 119 
 CODE ENDS
