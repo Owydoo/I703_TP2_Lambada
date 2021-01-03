@@ -39,7 +39,7 @@ public class Assembleur {
         else{
 
             if(arbre.getType() == Arbre.NodeType.LET){
-                pw.println("   " + arbre.getFg() + " DD");
+                pw.println("    " + arbre.getFg() + " DD");
             }
             if(arbre.getFg() != null){
                 rightVariables(arbre.getFg(), pw);
@@ -56,9 +56,8 @@ public class Assembleur {
             switch (arbre.getType()) {
                 case ENTIER:
                 case IDENT:
-                    pw.println("    mov eax, " + arbre.toString());
+                    pw.println("    mov eax, " + arbre);
                     break;
-
                 case SEMI:
                     rightCode(arbre.getFg(), pw);
                     rightCode(arbre.getFd(), pw);
@@ -98,6 +97,20 @@ public class Assembleur {
                     pw.println("    div ebx, eax");
                     pw.println("    mov eax, ebx");
                     break;
+
+                case MOD:
+                    rightCode(arbre.getFd(), pw);
+                    pw.println("    push eax");
+                    rightCode(arbre.getFd(), pw);
+                    pw.println("    pop ebx");
+                    pw.println("    mov ecx, eax");
+                    pw.println("    div ecx, ebx");
+                    pw.println("    mul ecx, ebx");
+                    pw.println("    sub eax, ecx");
+                    break;
+
+
+
             }
         }
     }

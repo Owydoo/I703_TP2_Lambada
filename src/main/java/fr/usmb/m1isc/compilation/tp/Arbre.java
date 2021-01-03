@@ -97,10 +97,4 @@ public class Arbre {
 //		res.append(this.type.toString() + this.fg.toString() + this.fd.toString());
 		return res.toString();
 	}
-
-
-
-
-	
-
 }
